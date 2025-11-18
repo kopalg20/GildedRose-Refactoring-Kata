@@ -3,7 +3,6 @@ import { AgedBrie } from './aged-brie';
 import { BackstagePasses } from './backstage-passes';
 import { ConjuredItem } from './conjured-item';
 import { NormalItem } from './normal-item';
-import { Sulfuras } from './sulfuras';
 
 export class Item {
   name: string;
@@ -18,8 +17,6 @@ export class Item {
 }
 export class GildedRose {
   items: Array<Item>;
-
-  sulfuras: Sulfuras;
   agedBrie: AgedBrie;
   backstagePasses: BackstagePasses;
   conjuredItem: ConjuredItem;
@@ -27,7 +24,6 @@ export class GildedRose {
 
   constructor(items = [] as Array<Item>) {
     this.items = items;
-    this.sulfuras = new Sulfuras();
     this.agedBrie = new AgedBrie();
     this.backstagePasses = new BackstagePasses();
     this.conjuredItem = new ConjuredItem();
@@ -36,23 +32,21 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
+      const item = this.items[i];
       const name = this.items[i].name;
-      switch (true) {
-        case name === ItemType.SULFURAS:
-          this.sulfuras.update(this.items[i]);
-          break;
-        case name === ItemType.AGED_BRIE:
-          this.agedBrie.update(this.items[i]);
-          break;
-        case name === ItemType.BACKSTAGE_PASSES:
-          this.backstagePasses.update(this.items[i]);
-          break;
-        case name.indexOf(ItemType.CONJURED_ITEM_PREFIX) === 0:
-          this.conjuredItem.update(this.items[i]);
-          break;
-        default:
-          this.normalItem.update(this.items[i]);
+      if( name === ItemType.SULFURAS) {
+        continue;
       }
+      if (name === ItemType.AGED_BRIE) {
+        this.agedBrie.update(item);
+      } else if (name === ItemType.BACKSTAGE_PASSES) {
+        this.backstagePasses.update(item);
+      } else if (name.startsWith(ItemType.CONJURED_ITEM_PREFIX)) {
+        this.conjuredItem.update(item);
+      } else {
+        this.normalItem.update(item);
+      }
+      item.sellIn--;
     }
     return this.items;
   }

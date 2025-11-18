@@ -1,20 +1,18 @@
 import { Item } from './gilded-rose';
-const MAX_QUALITY = 50;
-const MIN_QUALITY = 0;
-const LEGENDARY_QUALITY = 80;
 
 export class UpdateClass{
+    MAX_QUALITY = 50;
+    MIN_QUALITY = 0;
+    LEGENDARY_QUALITY = 80;
+    QUALITY_INCREASE_RATE = 1;
+    QUALITY_DECREASE_RATE = 1;
+    THRESHOLD_SELLIN = 0;
 
     increaseQuality(item: Item,amount: number){ 
-        item.quality = Math.min(MAX_QUALITY,item.quality + amount);
+        item.quality = Math.min(this.MAX_QUALITY,item.quality + amount);
     }
 
     decreaseQuality(item: Item,amount: number){ 
-        item.quality = Math.max(MIN_QUALITY,item.quality - amount);
+        item.quality = Math.max(this.MIN_QUALITY,item.quality - amount);
     }
-
-    decreaseSellIn(item: Item,amount: number){ 
-        item.sellIn -= amount;
-    }
-
 }

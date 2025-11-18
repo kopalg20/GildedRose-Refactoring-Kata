@@ -3,10 +3,10 @@ import { Item } from './gilded-rose';
 
 export class ConjuredItem extends UpdateClass {
   update(item: Item): void {
-    this.decreaseQuality(item, 2);
-    this.decreaseSellIn(item, 1);
-    if (item.sellIn < 0) {
-      this.decreaseQuality(item, 2);
+    if(item.sellIn <= this.THRESHOLD_SELLIN) {
+        this.decreaseQuality(item, this.QUALITY_DECREASE_RATE*2*2);
+    }else {
+        this.decreaseQuality(item, this.QUALITY_DECREASE_RATE*2);
     }
   }
 }
