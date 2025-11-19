@@ -1,5 +1,5 @@
-import { UpdateClass } from './update-class';
-import { Item } from './gilded-rose';
+import { UpdateClass } from '../update-class';
+import { Item } from '../gilded-rose';
 
 export class BackstagePasses extends UpdateClass {
   UPPER_THRESHOLD_1 = 10;

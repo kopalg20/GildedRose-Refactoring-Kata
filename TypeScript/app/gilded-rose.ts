@@ -1,8 +1,8 @@
 import { ItemType } from './enum';
-import { AgedBrie } from './aged-brie';
-import { BackstagePasses } from './backstage-passes';
-import { ConjuredItem } from './conjured-item';
-import { NormalItem } from './normal-item';
+import { AgedBrie } from './Items/aged-brie';
+import { BackstagePasses } from './Items/backstage-passes';
+import { ConjuredItem } from './Items/conjured-item';
+import { NormalItem } from './Items/normal-item';
 
 export class Item {
   name: string;
