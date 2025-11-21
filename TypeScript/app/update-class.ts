@@ -3,7 +3,6 @@ import { Item } from './gilded-rose';
 export class UpdateClass{
     MAX_QUALITY = 50;
     MIN_QUALITY = 0;
-    LEGENDARY_QUALITY = 80;
     QUALITY_INCREASE_RATE = 1;
     QUALITY_DECREASE_RATE = 1;
     THRESHOLD_SELLIN = 0;
